@@ -6,7 +6,9 @@ namespace JobInfoSortingApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<Skills> skills { get; set; }
+        public DbSet<Skills> Skills { get; set; }
+        public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
