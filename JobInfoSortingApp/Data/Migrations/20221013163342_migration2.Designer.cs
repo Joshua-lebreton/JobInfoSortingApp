@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobInfoSortingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221013040029_jobMigrations")]
-    partial class jobMigrations
+    [Migration("20221013163342_migration2")]
+    partial class migration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -89,7 +89,12 @@ namespace JobInfoSortingApp.Data.Migrations
                     b.Property<string>("Resume")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SkillsId")
+                        .HasColumnType("int");
+
                     b.HasKey("ProfileId");
+
+                    b.HasIndex("SkillsId");
 
                     b.ToTable("Profiles");
                 });
@@ -102,9 +107,6 @@ namespace JobInfoSortingApp.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SkillsId"), 1L, 1);
 
-                    b.Property<int?>("ProfileId")
-                        .HasColumnType("int");
-
                     b.Property<string>("SkillName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -114,8 +116,6 @@ namespace JobInfoSortingApp.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SkillsId");
-
-                    b.HasIndex("ProfileId");
 
                     b.ToTable("Skills");
                 });
@@ -329,11 +329,13 @@ namespace JobInfoSortingApp.Data.Migrations
                         .HasForeignKey("ProfileId");
                 });
 
-            modelBuilder.Entity("JobInfoSortingApp.Models.Skills", b =>
+            modelBuilder.Entity("JobInfoSortingApp.Models.Profile", b =>
                 {
-                    b.HasOne("JobInfoSortingApp.Models.Profile", null)
-                        .WithMany("Skills")
-                        .HasForeignKey("ProfileId");
+                    b.HasOne("JobInfoSortingApp.Models.Skills", "Skill")
+                        .WithMany("Profiles")
+                        .HasForeignKey("SkillsId");
+
+                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -390,8 +392,11 @@ namespace JobInfoSortingApp.Data.Migrations
             modelBuilder.Entity("JobInfoSortingApp.Models.Profile", b =>
                 {
                     b.Navigation("Jobs");
+                });
 
-                    b.Navigation("Skills");
+            modelBuilder.Entity("JobInfoSortingApp.Models.Skills", b =>
+                {
+                    b.Navigation("Profiles");
                 });
 #pragma warning restore 612, 618
         }

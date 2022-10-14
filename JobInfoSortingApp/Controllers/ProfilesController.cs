@@ -22,7 +22,8 @@ namespace JobInfoSortingApp.Controllers
         // GET: Profiles
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Profiles.ToListAsync());
+            var applicationDbContext = _context.Profiles.Include(p => p.Skill);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Profiles/Details/5
@@ -34,6 +35,7 @@ namespace JobInfoSortingApp.Controllers
             }
 
             var profile = await _context.Profiles
+                .Include(p => p.Skill)
                 .FirstOrDefaultAsync(m => m.ProfileId == id);
             if (profile == null)
             {
@@ -46,6 +48,7 @@ namespace JobInfoSortingApp.Controllers
         // GET: Profiles/Create
         public IActionResult Create()
         {
+            ViewData["SkillsId"] = new SelectList(_context.Skills, "SkillsId", "SkillName");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace JobInfoSortingApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProfileId,Name,Age,JobTitle,Location,Resume")] Profile profile)
+        public async Task<IActionResult> Create([Bind("ProfileId,SkillsId,Name,Age,JobTitle,Location")] Profile profile)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace JobInfoSortingApp.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SkillsId"] = new SelectList(_context.Skills, "SkillsId", "SkillsId", profile.SkillsId);
             return View(profile);
         }
 
@@ -78,6 +82,7 @@ namespace JobInfoSortingApp.Controllers
             {
                 return NotFound();
             }
+            ViewData["SkillsId"] = new SelectList(_context.Skills, "SkillsId", "SkillsId", profile.SkillsId);
             return View(profile);
         }
 
@@ -86,7 +91,7 @@ namespace JobInfoSortingApp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProfileId,Name,Age,JobTitle,Location,Resume")] Profile profile)
+        public async Task<IActionResult> Edit(int id, [Bind("ProfileId,SkillsId,Name,Age,JobTitle,Location")] Profile profile)
         {
             if (id != profile.ProfileId)
             {
@@ -113,6 +118,7 @@ namespace JobInfoSortingApp.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["SkillsId"] = new SelectList(_context.Skills, "SkillsId", "SkillsId", profile.SkillsId);
             return View(profile);
         }
 
@@ -125,6 +131,7 @@ namespace JobInfoSortingApp.Controllers
             }
 
             var profile = await _context.Profiles
+                .Include(p => p.Skill)
                 .FirstOrDefaultAsync(m => m.ProfileId == id);
             if (profile == null)
             {

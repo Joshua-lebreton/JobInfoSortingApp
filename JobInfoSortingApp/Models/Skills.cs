@@ -6,5 +6,6 @@
         public string SkillName { get; set; }
         public string SkillType { get; set; }
         public List<Profile>? Profiles { get; set; }
+
     }
 }

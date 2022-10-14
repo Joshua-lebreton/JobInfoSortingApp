@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="NewButton">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.Location)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Resume)
+                @Html.DisplayNameFor(model => model.Skill)
             </th>
             <th></th>
         </tr>
@@ -46,12 +46,12 @@
                 @Html.DisplayFor(modelItem => item.Location)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Resume)
+                    @Html.DisplayFor(modelItem => item.Skill.SkillName)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.ProfileId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ProfileId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ProfileId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.ProfileId" class="EDDstyle">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProfileId" class="EDDstyle">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProfileId" class="EDDstyle">Delete</a>
             </td>
         </tr>
 }
