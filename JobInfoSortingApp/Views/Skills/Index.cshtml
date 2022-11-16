@@ -6,9 +6,12 @@
 
 <h1>Skills</h1>
 
+ @if (User.IsInRole("Admin"))
+{
 <p>
     <a asp-action="Create" class="NewButton">Create New</a>
 </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -31,9 +34,13 @@
                 @Html.DisplayFor(modelItem => item.SkillType)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.SkillsId" class="EDDstyle">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.SkillsId" class="EDDstyle">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.SkillsId" class="EDDstyle">Delete</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.SkillsId" class="EDDstyle">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.SkillsId" class="EDDstyle">Delete</a>
+                    }
+                <a asp - action = "Details" asp - route - id = "@item.SkillsId" class="EDDstyle">Details</a>
+                    
             </td>
         </tr>
 }

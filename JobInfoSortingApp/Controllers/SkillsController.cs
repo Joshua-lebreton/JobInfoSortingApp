@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JobInfoSortingApp.Data;
 using JobInfoSortingApp.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace JobInfoSortingApp.Controllers
 {
@@ -44,6 +46,7 @@ namespace JobInfoSortingApp.Controllers
         }
 
         // GET: Skills/Create
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -66,6 +69,7 @@ namespace JobInfoSortingApp.Controllers
         }
 
         // GET: Skills/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Skills == null)
@@ -117,6 +121,7 @@ namespace JobInfoSortingApp.Controllers
         }
 
         // GET: Skills/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Skills == null)
