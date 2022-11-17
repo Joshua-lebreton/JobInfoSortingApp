@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobInfoSortingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221013191330_aaaaaa")]
-    partial class aaaaaa
+    [Migration("20221117010051_localplease")]
+    partial class localplease
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,9 +84,6 @@ namespace JobInfoSortingApp.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Resume")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("SkillsId")

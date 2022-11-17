@@ -4,7 +4,7 @@
 
 namespace JobInfoSortingApp.Data.Migrations
 {
-    public partial class migrateplease : Migration
+    public partial class azureagain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

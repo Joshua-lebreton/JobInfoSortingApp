@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobInfoSortingApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221014011103_RemovedResume")]
-    partial class RemovedResume
+    [Migration("20221116223854_azureplease2")]
+    partial class azureplease2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
