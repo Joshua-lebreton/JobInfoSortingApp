@@ -6,6 +6,11 @@
 
 <h1>Skills</h1>
 
+<<<<<<< Updated upstream
+=======
+@if (User.Identity.IsAuthenticated)
+{
+>>>>>>> Stashed changes
 <p>
     <a asp-action="Create" class="NewButton">Create New</a>
 </p>
@@ -31,9 +36,19 @@
                 @Html.DisplayFor(modelItem => item.SkillType)
             </td>
             <td>
+<<<<<<< Updated upstream
                 <a asp-action="Edit" asp-route-id="@item.SkillsId" class="EDDstyle">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.SkillsId" class="EDDstyle">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.SkillsId" class="EDDstyle">Delete</a>
+=======
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Edit" asp-route-id="@item.SkillsId" class="EDDstyle">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.SkillsId" class="EDDstyle">Delete</a>
+                    }
+                    <a asp-action = "Details" asp-route-id = "@item.SkillsId" class="EDDstyle">Details</a>
+                    
+>>>>>>> Stashed changes
             </td>
         </tr>
 }

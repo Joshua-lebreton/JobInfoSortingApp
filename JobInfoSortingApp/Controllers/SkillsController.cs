@@ -44,6 +44,10 @@ namespace JobInfoSortingApp.Controllers
         }
 
         // GET: Skills/Create
+<<<<<<< Updated upstream
+=======
+        [Authorize]
+>>>>>>> Stashed changes
         public IActionResult Create()
         {
             return View();
@@ -66,6 +70,10 @@ namespace JobInfoSortingApp.Controllers
         }
 
         // GET: Skills/Edit/5
+<<<<<<< Updated upstream
+=======
+        [Authorize]
+>>>>>>> Stashed changes
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Skills == null)
@@ -117,6 +125,10 @@ namespace JobInfoSortingApp.Controllers
         }
 
         // GET: Skills/Delete/5
+<<<<<<< Updated upstream
+=======
+        [Authorize]
+>>>>>>> Stashed changes
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Skills == null)
